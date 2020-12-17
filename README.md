@@ -56,22 +56,21 @@ import os
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 ```
 
-## Create a requirements-dev.txt
+## Requirements files
 * pip freeze > requirements-dev.txt
-
-## Create a file `requirements.txt` with the following content
+* Create a file `requirements.txt` with the following content
 ```
 -r requirements-dev.txt
 gunicorn
 psycopg2
 ```
 
-## Create a file `Procfile` and add the following code
+## Procfile and Runtime
+* Create a file `Procfile` and add the following code
 ```
 web: gunicorn ProjectName.wsgi
 ```
-
-## Create a file runtime.txt and add the following code
+* Create a file `runtime.txt` and add the following code
 ```
 python-3.9.0
 ```
@@ -80,23 +79,23 @@ python-3.9.0
 Install heroku CLI in your computer (https://devcenter.heroku.com/articles/heroku-cli)
 * heroku apps:create app-name
 
-## Setting the allowed hosts
+### Setting the allowed hosts
 * include the app domain at the ALLOWED_HOSTS directives in settings.py | Ex: app.heroku.com
 
 ### Sending configs to Heroku
 * heroku plugins:install heroku-config
 * heroku config:push
 
-## Publishing the app
+### Publishing the app
 * git add *
 * git commit -m 'First commit'
 * git push heroku master --force
 
-## Creating the data base
+### Creating the data base
 * heroku run python3 manage.py migrate
 
-## Creating the Django admin user
+### Creating the Django admin user
 * heroku run python3 manage.py createsuperuser
 
-## Disable DEBUG mode
+### Disable DEBUG mode
 * heroku config:set DEBUG=False
